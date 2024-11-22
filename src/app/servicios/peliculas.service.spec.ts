@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { PeliculasService } from './peliculas.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { mockPeliculas } from '../mocks/policulas.mock';
 import { of } from 'rxjs';
 
@@ -27,6 +27,16 @@ describe('PeliculasService', () => {
         expect(response).toEqual(mockPeliculas);
         expect(httpClientSpy.get.calls.count()).toBe(1);
         expect(httpClientSpy.get.calls.first().args[0]).toBe('https://api.sampleapis.com/movies/drama')
+      }
+    })
+  })
+  it('obtener comedias',()=>{
+    httpClientSpy.get.and.returnValue(of(mockPeliculas));
+    service.obtenerComedias().subscribe({
+      next:(res) =>{
+        expect(res).toEqual(mockPeliculas);
+        expect(httpClientSpy.get.calls.count()).toBe(1);
+        expect(httpClientSpy.get.calls.first().args[0]).toBe('https://api.sampleapis.com/movies/comedy')
       }
     })
   })

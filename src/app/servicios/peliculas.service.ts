@@ -12,4 +12,7 @@ export class PeliculasService {
   obtenerDramas(){
     return this.http.get(this.url+'/drama')
   }
+  obtenerComedias(){
+    return this.http.get(this.url+'/comedy')
+  }
 }
